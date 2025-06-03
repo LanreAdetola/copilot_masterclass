@@ -25,24 +25,24 @@ body {
 
 
 .avatar-box {
-    width: 64px;
-    height: 64px;
-    min-width: 64px;
-    min-height: 64px;
+    width: 120px;
+    height: 120px;
+    min-width: 120px;
+    min-height: 120px;
     background: #fff;
     border-radius: 50%;
     overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-right: 18px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+    margin-right: 24px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.12);
     border: 2px solid #fff;
 }
 
 .avatar-box .avatar {
-    width: 60px;
-    height: 60px;
+    width: 112px;
+    height: 112px;
     border-radius: 50%;
     object-fit: cover;
     display: block;

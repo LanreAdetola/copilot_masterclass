@@ -5,17 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat with Steve Jobs</title>
     <link rel="stylesheet" href="/static/style.css">
+    <style>
+        /* Responsive tweaks for chat container */
+        @media (max-width: 600px) {
+            .chat-container {
+                max-width: 100vw;
+                margin: 0;
+                border-radius: 0;
+                min-height: 100vh;
+            }
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 12px 10px;
+            }
+            .avatar-box {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="chat-container">
         <div class="header">
             <div class="avatar-box">
-                <img src="/static/steve-jobs-570x519.jpg" alt="Steve Jobs" class="avatar">
+                <img src="/media/steve.png" alt="Steve Jobs" class="avatar">
             </div>
             <h2>Chat with Steve Jobs</h2>
         </div>
         <div id="chat-box" class="chat-box">
             <div class="message steve">
+                <img src="/media/steve.png" class="msg-avatar" alt="Steve">
                 <div class="bubble">Hi, I'm Steve Jobs. Ask me anything!</div>
             </div>
         </div>
@@ -28,6 +49,14 @@
         const form = document.getElementById('chat-form');
         const input = document.getElementById('user-input');
         const chatBox = document.getElementById('chat-box');
+
+        // Send on Enter
+        input.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                form.dispatchEvent(new Event('submit', {cancelable: true, bubbles: true}));
+            }
+        });
 
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
@@ -47,6 +76,11 @@
         function addMessage(sender, text) {
             const msgDiv = document.createElement('div');
             msgDiv.className = 'message ' + sender;
+            const avatar = document.createElement('img');
+            avatar.className = 'msg-avatar';
+            avatar.alt = sender === 'steve' ? 'Steve' : 'User';
+            avatar.src = sender === 'steve' ? '/media/steve.png' : '/media/user.png';
+            msgDiv.appendChild(avatar);
             const bubble = document.createElement('div');
             bubble.className = 'bubble';
             bubble.textContent = text;
